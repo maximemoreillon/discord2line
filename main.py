@@ -28,8 +28,9 @@ async def on_message(message):
         print(f"Author {message.author.id} is in the ingore list")
         return
 
-    preamble = "Relaying message from Discord:"
-    text = f"{preamble} {message.content}"
+    text = (
+        f"Relaying message from Discord user {message.author.name}: {message.content}"
+    )
 
     url = "https://api.line.me/v2/bot/message/push"
     headers = {"Authorization": f"Bearer {LINE_BOT_TOKEN}"}
