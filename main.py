@@ -27,6 +27,8 @@ async def on_message(message):
     if str(message.author.id) in DISCORD_IGNORED_AUTHORS.split(","):
         print(f"Author {message.author.id} is in the ignore list")
         return
+    
+    print(f"Realying message from user {message.author.name}: {message.content}")
 
     url = "https://api.line.me/v2/bot/message/push"
     headers = {"Authorization": f"Bearer {LINE_BOT_TOKEN}"}
@@ -83,6 +85,8 @@ async def on_message(message):
 
     if not res.ok:
         print(res.text)
+    else:
+        
 
 
 client.run(DISCORD_BOT_TOKEN)
