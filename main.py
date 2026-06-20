@@ -39,15 +39,29 @@ async def on_message(message):
                 "altText": "Message from Discord",
                 "contents": {
                     "type": "bubble",
-                    "body": {
+                    "header": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "Message from Discord",
-                                "size": "xxs",
-                            },
+                                "text": "Discord message",
+                                "color": "#eeeeee",
+                                "size": "sm",
+                            }
+                        ],
+                        "paddingTop": "sm",
+                        "paddingBottom": "sm",
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            # {
+                            #     "type": "text",
+                            #     "text": "Message from Discord",
+                            #     "size": "xxs",
+                            # },
                             {
                                 "type": "text",
                                 "text": message.author.name,
@@ -56,7 +70,10 @@ async def on_message(message):
                             },
                             {"type": "text", "text": message.content},
                         ],
+                        "paddingTop": "md",
+                        "paddingBottom": "md",
                     },
+                    "styles": {"header": {"backgroundColor": "#5865F2"}},
                 },
             }
         ],
