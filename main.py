@@ -25,18 +25,41 @@ async def on_message(message):
         return
 
     if str(message.author.id) in DISCORD_IGNORED_AUTHORS.split(","):
-        print(f"Author {message.author.id} is in the ingore list")
+        print(f"Author {message.author.id} is in the ignore list")
         return
-
-    text = (
-        f"Relaying message from Discord user {message.author.name}: {message.content}"
-    )
 
     url = "https://api.line.me/v2/bot/message/push"
     headers = {"Authorization": f"Bearer {LINE_BOT_TOKEN}"}
     json = {
         "to": LINE_CHANNEL_ID,
-        "messages": [{"type": "text", "text": text}],
+        # "messages": [{"type": "text", "text": text}], # For simple text messages
+        "messages": [
+            {
+                "type": "flex",
+                "altText": "Message from Discord",
+                "contents": {
+                    "type": "bubble",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "Message from Discord",
+                                "size": "xxs",
+                            },
+                            {
+                                "type": "text",
+                                "text": "message.author.name",
+                                "weight": "bold",
+                                "size": "sm",
+                            },
+                            {"type": "text", "text": message.content},
+                        ],
+                    },
+                },
+            }
+        ],
     }
 
     requests.post(url=url, json=json, headers=headers)
