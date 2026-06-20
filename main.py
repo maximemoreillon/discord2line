@@ -79,7 +79,10 @@ async def on_message(message):
         ],
     }
 
-    requests.post(url=url, json=json, headers=headers)
+    res = requests.post(url=url, json=json, headers=headers)
+
+    if not res.ok:
+        print(res.text)
 
 
 client.run(DISCORD_BOT_TOKEN)
