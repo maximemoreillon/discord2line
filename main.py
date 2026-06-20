@@ -50,7 +50,7 @@ async def on_message(message):
                             },
                             {
                                 "type": "text",
-                                "text": "message.author.name",
+                                "text": message.author.name,
                                 "weight": "bold",
                                 "size": "sm",
                             },
