@@ -17,6 +17,10 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
+print(
+    f"Relaying messages from Discord channel {DISCORD_CHANNEL_ID} to LINE's {LINE_CHANNEL_ID}"
+)
+
 
 @client.event
 async def on_message(message):
@@ -25,7 +29,6 @@ async def on_message(message):
         return
 
     if str(message.author.id) in DISCORD_IGNORED_AUTHORS.split(","):
-        print(f"Author {message.author.id} is in the ignore list")
         return
 
     print(f"Realying message from user {message.author.name}: {message.content}")
